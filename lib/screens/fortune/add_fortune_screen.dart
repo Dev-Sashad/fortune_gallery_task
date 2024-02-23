@@ -66,32 +66,24 @@ class _AddFortuneScreenState extends State<AddFortuneScreen> {
         );
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-      child: CustomScrollWidget(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                controller: _controller,
-                cursorHeight: 30.sp,
-                cursorColor: AppColors.darkGrey,
-                scrollPadding: const EdgeInsets.all(20.0),
-                autofocus: true,
-                keyboardType: TextInputType.multiline,
-                maxLines: 99999,
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: AppColors.black, fontWeight: FontWeight.w600),
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(horizontal: eqW(10)),
-                    hintText: 'Start writing...',
-                    hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: AppColors.textGrey,
-                        fontWeight: FontWeight.w600)),
-              ),
-            ],
-          ),
-        ),
+      child: TextField(
+        controller: _controller,
+        cursorHeight: 30.sp,
+        cursorColor: AppColors.darkGrey,
+        scrollPadding: const EdgeInsets.all(20.0),
+        autofocus: false,
+        keyboardType: TextInputType.multiline,
+        maxLines: 99999,
+        style: Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(color: AppColors.black, fontWeight: FontWeight.w600),
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: eqW(10)),
+            hintText: 'Start writing...',
+            hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: AppColors.textGrey, fontWeight: FontWeight.w600)),
       ),
     );
   }

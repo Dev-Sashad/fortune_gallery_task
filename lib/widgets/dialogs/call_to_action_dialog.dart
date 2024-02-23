@@ -49,55 +49,59 @@ class CallToActionDialog extends StatelessWidget {
                 )),
             VerticalSpace(eqH(20)),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    if (declineroute != null) {
-                      declineroute!();
-                    }
-                  },
-                  child: Container(
-                    constraints:
-                        BoxConstraints(minWidth: eqW(100), maxHeight: 40),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: eqW(20),
-                    ),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(color: AppColors.darkGrey)),
-                    child: CustomText(
-                      declineText!,
-                      color: AppColors.darkGrey,
-                      fontWeight: FontWeight.bold,
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      if (declineroute != null) {
+                        declineroute!();
+                      }
+                    },
+                    child: Container(
+                      constraints:
+                          BoxConstraints(minWidth: eqW(100), maxHeight: 40),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: eqW(20),
+                      ),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(color: AppColors.darkGrey)),
+                      child: CustomText(
+                        declineText!,
+                        color: AppColors.darkGrey,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                HorizontalSpace(eqW(10)),
-                InkWell(
-                  onTap: () {
-                    if (route != null) {
-                      Navigator.of(context).pop();
-                      route!();
-                    }
-                  },
-                  child: Container(
-                    constraints:
-                        BoxConstraints(minWidth: eqW(100), maxHeight: 40),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: eqW(20),
-                    ),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: acceptColor ??
-                            Theme.of(context).colorScheme.primary),
-                    child: CustomText(
-                      acceptText!,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
+                HorizontalSpace(eqW(20)),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      if (route != null) {
+                        Navigator.of(context).pop();
+                        route!();
+                      }
+                    },
+                    child: Container(
+                      constraints:
+                          BoxConstraints(minWidth: eqW(100), maxHeight: 40),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: eqW(20),
+                      ),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: acceptColor ??
+                              Theme.of(context).colorScheme.primary),
+                      child: CustomText(
+                        acceptText!,
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
