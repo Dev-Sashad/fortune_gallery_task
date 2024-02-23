@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fortune_gallery/_lib.dart';
 import 'package:fortune_gallery/utils/helpers/time_utils.dart';
 import 'package:get/get.dart';
@@ -17,19 +18,26 @@ class ViewFortuneScreen extends StatelessWidget with UIToolMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          navigationService.pushScreen(AddFortuneScreen(
-            data: data,
-          ));
-          Navigator.pop(context);
-        },
-        shape: const CircleBorder(),
-        backgroundColor: AppColors.black,
-        child: Icon(
-          Icons.edit_outlined,
-          size: 30.sp,
-          color: AppColors.white,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: color,
+      ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(top: 20.sp),
+        child: FloatingActionButton(
+          onPressed: () {
+            navigationService.pushScreen(AddFortuneScreen(
+              data: data,
+            ));
+            Navigator.pop(context);
+          },
+          shape: const CircleBorder(),
+          backgroundColor: AppColors.black,
+          child: Icon(
+            Icons.edit_outlined,
+            size: 30.sp,
+            color: AppColors.white,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
@@ -72,7 +80,7 @@ class ViewFortuneScreen extends StatelessWidget with UIToolMixin {
                 children: [
                   Container(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 8.sp, vertical: 6.sp),
+                        EdgeInsets.symmetric(horizontal: 10.sp, vertical: 8.sp),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.r),
                         color: AppColors.white.withOpacity(0.4)),

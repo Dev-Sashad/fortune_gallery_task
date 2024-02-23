@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
-      statusBarColor: AppColors.white,
+      statusBarColor: AppColors.backgroundColor,
     ));
     return DismissableKeyboardFeature(
       child: ScreenUtilInit(
