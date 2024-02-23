@@ -47,7 +47,7 @@ class HomeTileWidget extends StatelessWidget {
               children: [
                 Container(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 8.sp, vertical: 6.sp),
+                      EdgeInsets.symmetric(horizontal: 10.sp, vertical: 8.sp),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),
                       color: AppColors.white.withOpacity(0.4)),

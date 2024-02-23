@@ -1,4 +1,5 @@
 import 'package:fortune_gallery/_lib.dart';
+import 'package:fortune_gallery/utils/extension.dart';
 
 class HomeVm extends StateNotifier<HomeState> {
   HomeVm(this._notesRepo) : super(HomeState.initial()) {
@@ -53,15 +54,12 @@ class HomeVm extends StateNotifier<HomeState> {
   }
 
   Future<void> getMoreFortune() async {
-    if (state.noMoreData!) {
-      state = state.copyWith(
-        getMoreState: LoadingState.idle,
-      );
-    } else {
+    if (state.noMoreData! == false && !state.getMoreState!.isLoading) {
       state = state.copyWith(
         getMoreState: LoadingState.loading,
       );
       await delay();
+      appPrint(state.nextPageRange);
       final result =
           await _notesRepo.getAllFortune(startFrom: state.nextPageRange);
       if (result.status) {
@@ -73,8 +71,10 @@ class HomeVm extends StateNotifier<HomeState> {
             }
           }
         }
-        state = state.copyWith(getMoreState: LoadingState.idle, data: data);
-        appPrint(state.getMoreState!.name);
+        state = state.copyWith(
+            getMoreState: LoadingState.idle,
+            data: [...state.data!, ...data],
+            noMoreData: result.data!.isEmpty);
       } else {
         state = state.copyWith(
           getMoreState: LoadingState.idle,

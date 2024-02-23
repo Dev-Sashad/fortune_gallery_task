@@ -11,12 +11,12 @@ class HomeSreen extends ConsumerStatefulWidget {
 }
 
 class _HomeSreenState extends ConsumerState<HomeSreen> with UIToolMixin {
-  ScrollController controller = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.addListener(() {
-        if (controller.position.extentAfter < 100) {
+      _scrollController.addListener(() {
+        if (_scrollController.position.extentAfter < 100) {
           ref.read(homeVm.notifier).getMoreFortune();
         }
       });
@@ -102,6 +102,7 @@ class _HomeSreenState extends ConsumerState<HomeSreen> with UIToolMixin {
                         margin: EdgeInsets.only(top: eqH(70)),
                         child: GridView.builder(
                             itemCount: vm.data!.length,
+                            controller: _scrollController,
                             gridDelegate: SliverQuiltedGridDelegate(
                               crossAxisCount: 2,
                               mainAxisSpacing: 8.sp,
