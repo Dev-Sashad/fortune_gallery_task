@@ -13,11 +13,11 @@ class LocalDatabase {
       return _database!;
     }
 
-    _database = await _initDatabase();
+    _database = await initDatabase();
     return _database!;
   }
 
-  Future<Database> _initDatabase() async {
+  Future<Database> initDatabase() async {
     final databasePath = await getDatabasesPath();
     final path = '$databasePath/${AppInfo.databaseName}';
     return await openDatabase(
@@ -38,8 +38,8 @@ class LocalDatabase {
       ''');
   }
 
-  Future close() async {
+  Future<void> close() async {
     final db = await instance.database;
-    db.close();
+    await db.close();
   }
 }

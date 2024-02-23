@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 void main() async {
   setupLocator();
+  await LocalDatabase.instance.initDatabase();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const ProviderScope(child: MyApp()));

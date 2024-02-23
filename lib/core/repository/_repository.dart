@@ -1,1 +1,1 @@
-export 'notes_repo.dart';
+export 'fortune_repo.dart';

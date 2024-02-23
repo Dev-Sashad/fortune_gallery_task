@@ -17,11 +17,12 @@ class HomeState {
       data: [],
       noMoreData: false);
 
-  HomeState copyWith(
-      {List<FortuneModel>? data,
-      LoadingState? viewState,
-      LoadingState? getMoreState,
-      bool? noMoreData}) {
+  HomeState copyWith({
+    List<FortuneModel>? data,
+    LoadingState? viewState,
+    LoadingState? getMoreState,
+    bool? noMoreData,
+  }) {
     return HomeState._(
         data: data ?? this.data,
         viewState: viewState ?? this.viewState,
