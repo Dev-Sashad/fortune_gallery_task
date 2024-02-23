@@ -29,40 +29,38 @@ class _AddFortuneScreenState extends State<AddFortuneScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      floatingActionButton: Row(
-        children: [
-          Consumer(builder: (context, ref, _) {
-            return GestureDetector(
-              onTap: () async {
-                final result = widget.data != null
-                    ? await ref.read(manageFortuenVm).updateFortune(
-                        data: FortuneModel(
-                            message: _controller.text.trim(),
-                            dateCreated: DateTime.now()))
-                    : await ref.read(manageFortuenVm).addFortune(
-                        data: FortuneModel(
-                            message: _controller.text.trim(),
-                            dateCreated: DateTime.now()));
-                if (result) {
-                  Navigator.pop(context);
-                }
-              },
-              child: Container(
-                padding: EdgeInsets.all(5.sp),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: AppColors.black),
-                child: CustomText(
-                  "Done",
-                  fontSize: 10.sp,
-                  color: AppColors.white,
-                ),
-              ),
-            );
-          }),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: Consumer(builder: (context, ref, _) {
+        return GestureDetector(
+          onTap: () async {
+            final result = widget.data != null
+                ? await ref.read(manageFortuenVm).updateFortune(
+                    data: FortuneModel(
+                        id: widget.data!.id,
+                        message: _controller.text.trim(),
+                        dateCreated: widget.data!.dateCreated))
+                : await ref.read(manageFortuenVm).addFortune(
+                    data: FortuneModel(
+                        message: _controller.text.trim(),
+                        dateCreated: DateTime.now()));
+            if (result) {
+              Navigator.pop(context);
+            }
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
+            margin: EdgeInsets.only(bottom: eqH(100), right: eqW(20)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.r),
+                color: AppColors.black),
+            child: CustomText(
+              "Done",
+              fontSize: 14.sp,
+              color: AppColors.white,
+            ),
+          ),
+        );
+      }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       child: CustomScrollWidget(
         child: Center(
           child: Column(

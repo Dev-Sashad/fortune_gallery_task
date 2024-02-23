@@ -31,7 +31,7 @@ class LoaderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             shape: shape!,
             borderRadius:
-                shape == BoxShape.circle ? null : BorderRadius.circular(10),
+                shape == BoxShape.circle ? null : BorderRadius.circular(15.r),
             color: AppColors.primaryColor.withOpacity(0.4),
           ),
         ));

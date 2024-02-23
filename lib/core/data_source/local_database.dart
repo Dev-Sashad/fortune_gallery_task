@@ -33,7 +33,7 @@ class LocalDatabase {
         CREATE TABLE ${FortuneModel.tableName} (
           ${FortuneModel.idKey} ${FortuneModel.idType},
           ${FortuneModel.messageKey} ${FortuneModel.textType},
-          ${FortuneModel.dateCreatedKey} ${FortuneModel.textType},
+          ${FortuneModel.dateCreatedKey} ${FortuneModel.textType}
         )
       ''');
   }

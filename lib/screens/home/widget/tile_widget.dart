@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_gallery/_lib.dart';
 import 'package:fortune_gallery/utils/helpers/time_utils.dart';
+import 'package:get/get.dart';
 
 class HomeTileWidget extends StatelessWidget {
   final Color? color;
@@ -36,7 +37,7 @@ class HomeTileWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomText(
-              data.message ?? "",
+              (data.message ?? "").capitalizeFirst ?? "",
               maxLines: 3,
               color: AppColors.white,
               fontWeight: FontWeight.w600,
@@ -45,14 +46,16 @@ class HomeTileWidget extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(5.sp),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 8.sp, vertical: 6.sp),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: color!.withOpacity(0.15)),
+                      borderRadius: BorderRadius.circular(8.r),
+                      color: AppColors.white.withOpacity(0.4)),
                   child: CustomText(
                     formatMonthYear(data.dateCreated),
                     fontSize: 10.sp,
                     color: AppColors.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],

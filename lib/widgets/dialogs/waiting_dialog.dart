@@ -14,7 +14,7 @@ class WaitDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 10.sp),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0.r),
                 color: AppColors.white,
@@ -23,28 +23,10 @@ class WaitDialog extends StatelessWidget {
                       color: Colors.black12, spreadRadius: 1, blurRadius: 3)
                 ],
               ),
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 10.0, right: 10.0, bottom: eqH(20), top: eqH(20)),
-                    child: SpinKitFadingFour(
-                      color: AppColors.primaryColor,
-                      size: 40.sp,
-                      duration: const Duration(milliseconds: 1200),
-                    ),
-                  ),
-                  const Positioned(
-                    top: 0,
-                    bottom: 0,
-                    left: 10,
-                    right: 10,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 3,
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                ],
+              child: SpinKitWaveSpinner(
+                color: AppColors.primaryColor,
+                size: 100.sp,
+                duration: const Duration(milliseconds: 1200),
               ),
             ),
           ],

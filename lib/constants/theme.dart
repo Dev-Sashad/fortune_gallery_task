@@ -20,7 +20,7 @@ class AppTheme {
       onPrimary: AppColors.white,
       surface: AppColors.white, // background color of the date picker
     ),
-    scaffoldBackgroundColor: AppColors.white,
+    scaffoldBackgroundColor: AppColors.backgroundColor,
     primaryColor: AppColors.primaryColor,
     scrollbarTheme: const ScrollbarThemeData().copyWith(
       thumbColor: MaterialStateProperty.all(AppColors.primaryColor),
@@ -35,9 +35,9 @@ class AppTheme {
         fontWeight: FontWeight.w700,
       ),
       titleLarge: GoogleFonts.montserrat(
-        fontSize: 38.sp,
+        fontSize: 28.sp,
         color: AppColors.textGrey,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w600,
       ),
       bodyLarge: GoogleFonts.montserrat(
         fontSize: 16.sp,
@@ -77,7 +77,7 @@ class AppTheme {
       surface: AppColors.primaryColor,
       onSurface: AppColors.textGrey,
     ),
-    scaffoldBackgroundColor: AppColors.black,
+    scaffoldBackgroundColor: AppColors.backgroundColor,
     primaryColor: AppColors.white,
     highlightColor: AppColors.white,
     scrollbarTheme: const ScrollbarThemeData().copyWith(
@@ -92,9 +92,9 @@ class AppTheme {
         fontWeight: FontWeight.w700,
       ),
       titleLarge: GoogleFonts.montserrat(
-        fontSize: 38.sp,
+        fontSize: 28.sp,
         color: AppColors.white,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w600,
       ),
       bodyLarge: GoogleFonts.montserrat(
         fontSize: 16.sp,
