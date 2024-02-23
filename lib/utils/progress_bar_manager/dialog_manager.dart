@@ -29,7 +29,7 @@ class _ProgressManagerState extends State<ProgressManager> {
         barrierDismissible: false,
         barrierColor: Colors.black38,
         builder: (context) {
-          return Container();
+          return const WaitDialog();
         });
   }
 }

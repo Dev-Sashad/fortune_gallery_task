@@ -20,16 +20,22 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with UIToolMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomText(
-            AppStrings.appTitle.toUpperCase(),
-            textType: TextType.largeText,
-            color: Theme.of(context).primaryColor,
-          )
-        ],
+      body: SizedBox(
+        height: screenHeight,
+        width: screenWidth,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomText(
+              AppStrings.appTitle.toUpperCase(),
+              textAlign: TextAlign.center,
+              textType: TextType.largeText,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).primaryColor,
+            )
+          ],
+        ),
       ),
     );
   }

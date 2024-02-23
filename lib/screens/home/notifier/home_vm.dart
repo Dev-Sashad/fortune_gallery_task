@@ -1,4 +1,5 @@
 import 'package:fortune_gallery/_lib.dart';
+import 'package:fortune_gallery/utils/extension.dart';
 
 class HomeVm extends StateNotifier<HomeState> {
   HomeVm(this._notesRepo) : super(HomeState.initial()) {
@@ -12,8 +13,6 @@ class HomeVm extends StateNotifier<HomeState> {
     );
     await delay();
     final result = await _notesRepo.getAllFortune(startFrom: 0);
-    final count = await _notesRepo.totalTableCount();
-    appPrint(count.data);
     if (result.status) {
       List<FortuneModel> data = [];
       if (result.data!.isNotEmpty) {
@@ -26,7 +25,7 @@ class HomeVm extends StateNotifier<HomeState> {
       state = state.copyWith(
           viewState: LoadingState.idle,
           data: data,
-          totalTablelCount: count.data);
+          noMoreData: result.data!.isEmpty);
       appPrint(state.viewState.name);
     } else {
       state = state.copyWith(
@@ -37,8 +36,6 @@ class HomeVm extends StateNotifier<HomeState> {
 
   Future<void> refreshFortune() async {
     final result = await _notesRepo.getAllFortune(startFrom: 0);
-    final count = await _notesRepo.totalTableCount();
-    appPrint(count.data);
     if (result.status) {
       List<FortuneModel> data = [];
       if (result.data!.isNotEmpty) {
@@ -51,18 +48,18 @@ class HomeVm extends StateNotifier<HomeState> {
       state = state.copyWith(
           viewState: LoadingState.idle,
           data: data,
-          totalTablelCount: count.data);
+          noMoreData: result.data!.isEmpty);
       appPrint(state.viewState.name);
     }
   }
 
   Future<void> getMoreFortune() async {
-    if (state.totalTablelCount! > 0 &&
-        state.totalTablelCount! > state.data!.length) {
+    if (state.noMoreData! == false && !state.getMoreState!.isLoading) {
       state = state.copyWith(
         getMoreState: LoadingState.loading,
       );
       await delay();
+      appPrint(state.nextPageRange);
       final result =
           await _notesRepo.getAllFortune(startFrom: state.nextPageRange);
       if (result.status) {
@@ -74,17 +71,15 @@ class HomeVm extends StateNotifier<HomeState> {
             }
           }
         }
-        state = state.copyWith(getMoreState: LoadingState.idle, data: data);
-        appPrint(state.getMoreState!.name);
+        state = state.copyWith(
+            getMoreState: LoadingState.idle,
+            data: [...state.data!, ...data],
+            noMoreData: result.data!.isEmpty);
       } else {
         state = state.copyWith(
           getMoreState: LoadingState.idle,
         );
       }
-    } else {
-      state = state.copyWith(
-        getMoreState: LoadingState.idle,
-      );
     }
   }
 }

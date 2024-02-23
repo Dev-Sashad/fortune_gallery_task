@@ -2,7 +2,7 @@ import 'package:fortune_gallery/_lib.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class FortuneRepo {
-  Future<BaseResponse<FortuneModel>> addFortune(FortuneModel note);
+  Future<BaseResponse<dynamic>> addFortune(FortuneModel note);
   Future<BaseResponse<FortuneModel>> updateFortune(FortuneModel note);
   Future<BaseResponse<int>> deleteFortune(int id);
   Future<BaseResponse<FortuneModel>> getSingleFortune(int id);

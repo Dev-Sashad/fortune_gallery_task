@@ -28,7 +28,7 @@ showToast(message) {
         child: CustomText(
           message,
           color: AppColors.white,
-          fontSize: 10.sp,
+          fontSize: 12.sp,
         ),
       ),
       context: context);

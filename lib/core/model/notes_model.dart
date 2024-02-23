@@ -24,10 +24,10 @@ class FortuneModel {
       };
 
   factory FortuneModel.fromJson(Map<String, Object?> json) => FortuneModel(
-        id: json[FortuneModel.idKey] as int?,
-        message: json[FortuneModel.messageKey] as String?,
-        dateCreated: DateTime.tryParse(
-            json[FortuneModel.dateCreatedKey] as String? ?? ''),
+        id: int.parse(json[FortuneModel.idKey].toString()),
+        message: json[FortuneModel.messageKey].toString(),
+        dateCreated:
+            DateTime.tryParse(json[FortuneModel.dateCreatedKey].toString()),
       );
 
   FortuneModel copy({

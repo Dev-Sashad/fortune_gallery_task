@@ -12,6 +12,7 @@ class BaseScaffold extends StatelessWidget {
   final VoidCallback? arrowBackCallBack;
   final Widget? floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final bool? resizeToAvoidBottomInset;
   const BaseScaffold(
       {super.key,
       this.showIcon = true,
@@ -20,6 +21,7 @@ class BaseScaffold extends StatelessWidget {
       this.initialSpace,
       this.floatingActionButtonLocation,
       this.arrowBackCallBack,
+      this.resizeToAvoidBottomInset = true,
       this.willPopValue = true,
       this.topSpace = 10,
       this.child,
@@ -32,7 +34,7 @@ class BaseScaffold extends StatelessWidget {
       bottomNavigationBar: bottomNavigationBar,
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBody: true,
       body: WillPopScope(
         onWillPop: () async {

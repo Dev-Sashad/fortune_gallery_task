@@ -9,10 +9,10 @@ class ManageFortuneVm extends BaseModel {
   Future<bool> addFortune({required FortuneModel data}) async {
     try {
       setBusy(true);
-      await delay();
+      await delay(2);
       final result = await _notesRepo.addFortune(data);
       if (result.status) {
-        _ref.read(homeVm.notifier).state.data![0] = result.data!;
+        await _ref.read(homeVm.notifier).refreshFortune();
         notifyListeners();
         setBusy(false);
         return true;
@@ -33,15 +33,10 @@ class ManageFortuneVm extends BaseModel {
   Future<bool> updateFortune({required FortuneModel data}) async {
     try {
       setBusy(true);
-      await delay();
+      await delay(1);
       final result = await _notesRepo.updateFortune(data);
       if (result.status) {
-        final index = _ref
-            .read(homeVm.notifier)
-            .state
-            .data!
-            .indexWhere((e) => e.id == data.id);
-        _ref.read(homeVm.notifier).state.data![index] = result.data!;
+        await _ref.read(homeVm.notifier).refreshFortune();
         notifyListeners();
         setBusy(false);
         return true;
@@ -62,11 +57,10 @@ class ManageFortuneVm extends BaseModel {
   Future<bool> deleteFortune({required int id}) async {
     try {
       setBusy(true);
-      await delay();
+      await delay(1);
       final result = await _notesRepo.deleteFortune(id);
-
       if (result.status) {
-        _ref.read(homeVm.notifier).state.data!.removeWhere((e) => e.id == id);
+        await _ref.read(homeVm.notifier).refreshFortune();
         notifyListeners();
         setBusy(false);
         return true;

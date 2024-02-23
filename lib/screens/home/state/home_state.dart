@@ -5,30 +5,28 @@ class HomeState {
   final LoadingState viewState;
   final LoadingState? getMoreState;
   final List<FortuneModel>? data;
-  final int? totalTablelCount;
+  final bool? noMoreData;
   int get nextPageRange => data!.length;
 
   const HomeState._(
-      {required this.viewState,
-      this.data,
-      this.getMoreState,
-      this.totalTablelCount});
+      {required this.viewState, this.data, this.getMoreState, this.noMoreData});
 
   factory HomeState.initial() => const HomeState._(
       viewState: LoadingState.idle,
       getMoreState: LoadingState.idle,
       data: [],
-      totalTablelCount: 0);
+      noMoreData: false);
 
-  HomeState copyWith(
-      {List<FortuneModel>? data,
-      LoadingState? viewState,
-      LoadingState? getMoreState,
-      int? totalTablelCount}) {
+  HomeState copyWith({
+    List<FortuneModel>? data,
+    LoadingState? viewState,
+    LoadingState? getMoreState,
+    bool? noMoreData,
+  }) {
     return HomeState._(
         data: data ?? this.data,
         viewState: viewState ?? this.viewState,
         getMoreState: getMoreState ?? this.getMoreState,
-        totalTablelCount: totalTablelCount ?? this.totalTablelCount);
+        noMoreData: noMoreData ?? this.noMoreData);
   }
 }

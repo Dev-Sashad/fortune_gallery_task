@@ -7,24 +7,18 @@ void main() async {
   setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await LocalDatabase.instance.initDatabase();
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerStatefulWidget {
-  const MyApp({
-    super.key,
-  });
-  @override
-  ConsumerState<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends ConsumerState<MyApp> with WidgetsBindingObserver {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
-      statusBarColor: AppColors.white,
+      statusBarColor: AppColors.backgroundColor,
     ));
     return DismissableKeyboardFeature(
       child: ScreenUtilInit(

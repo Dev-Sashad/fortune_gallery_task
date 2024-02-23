@@ -16,9 +16,15 @@ class NoHistoryWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.hourglass_empty_outlined,
-              size: 80.sp,
+            Container(
+              padding: EdgeInsets.all(30.sp),
+              decoration: BoxDecoration(
+                  color: AppColors.primaryColor.withOpacity(0.15),
+                  shape: BoxShape.circle),
+              child: Icon(
+                Icons.add,
+                size: 80.sp,
+              ),
             ),
             const VerticalSpace(10),
             SizedBox(
@@ -26,6 +32,8 @@ class NoHistoryWidget extends StatelessWidget {
               child: CustomText(
                 text ?? "No Record Found",
                 textAlign: TextAlign.center,
+                fontSize: 22.sp,
+                textType: TextType.mediumText,
               ),
             ),
             const VerticalSpace(20),
