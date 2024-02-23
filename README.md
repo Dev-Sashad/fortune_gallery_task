@@ -2,13 +2,13 @@
 
  An app that records a saying or famous quote you enter and saves it for future reference.
  
-The app was developed using flutter, dart.
-Statemanagement - Riverpod
-Database- Sqflite
+The app was developed using 
+- SDK - Flutter 3.7.3
+- Language - Dart.
+- Statemanagement - Riverpod
+- Database- Sqflite
 
 ## Getting Started
-
-The project was created on flutter sdk 3.7.3
 
 To test on android,
 - Clone the repo.
