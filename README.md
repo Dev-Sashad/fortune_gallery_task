@@ -4,6 +4,17 @@
 
 ## Getting Started
 
-Ensure you are running with flutter sdk 3.7.3
+The project was created on flutter sdk 3.7.3
+
+To test on android,
+- Clone the repo.
+- Ensure you have flutter installed.
+- Run the application.
+
+
+To test on IOS,
+- Clone the repo.
+- Ensure you have flutter installed.
+- Run the application.
 
 
