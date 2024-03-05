@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fortune_gallery/_lib.dart';
 import 'package:fortune_gallery/utils/router/navigation_route_names.dart';
 
 Route<dynamic> generateRoute(RouteSettings? settings) {
@@ -6,7 +7,7 @@ Route<dynamic> generateRoute(RouteSettings? settings) {
     case splashScreenViewRoute:
       return _getPageRoute(
         routeName: settings.name!,
-        viewToShow: Container(),
+        viewToShow: const SplashScreen(),
       );
 
     // case welcomeBackViewRoute:
