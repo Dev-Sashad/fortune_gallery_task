@@ -2,7 +2,8 @@ import 'package:fortune_gallery/_lib.dart';
 
 class ManageFortuneVm extends BaseModel {
   final FortuneRepo _notesRepo;
-  ManageFortuneVm(this._ref, this._notesRepo);
+  final HomeVm _homeVm;
+  ManageFortuneVm(this._ref, this._notesRepo, this._homeVm);
   final Ref _ref;
 
 // Add an item
@@ -12,7 +13,7 @@ class ManageFortuneVm extends BaseModel {
       await delay(2);
       final result = await _notesRepo.addFortune(data);
       if (result.status) {
-        await _ref.read(homeVm.notifier).refreshFortune();
+        await _homeVm.refreshFortune();
         notifyListeners();
         setBusy(false);
         return true;
@@ -36,7 +37,7 @@ class ManageFortuneVm extends BaseModel {
       await delay(1);
       final result = await _notesRepo.updateFortune(data);
       if (result.status) {
-        await _ref.read(homeVm.notifier).refreshFortune();
+        await _homeVm.refreshFortune();
         notifyListeners();
         setBusy(false);
         return true;
@@ -60,7 +61,7 @@ class ManageFortuneVm extends BaseModel {
       await delay(1);
       final result = await _notesRepo.deleteFortune(id);
       if (result.status) {
-        await _ref.read(homeVm.notifier).refreshFortune();
+        await _homeVm.refreshFortune();
         notifyListeners();
         setBusy(false);
         return true;
@@ -78,5 +79,5 @@ class ManageFortuneVm extends BaseModel {
   }
 }
 
-final manageFortuenVm = ChangeNotifierProvider<ManageFortuneVm>(
-    (ref) => ManageFortuneVm(ref, locator<FortuneRepo>()));
+final manageFortuenVm = ChangeNotifierProvider<ManageFortuneVm>((ref) =>
+    ManageFortuneVm(ref, locator<FortuneRepo>(), ref.watch(homeVm.notifier)));
