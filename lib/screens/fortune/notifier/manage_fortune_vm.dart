@@ -3,9 +3,7 @@ import 'package:fortune_gallery/_lib.dart';
 class ManageFortuneVm extends BaseModel {
   final FortuneRepo _notesRepo;
   final HomeVm _homeVm;
-  ManageFortuneVm(this._ref, this._notesRepo, this._homeVm);
-  final Ref _ref;
-
+  ManageFortuneVm(this._notesRepo, this._homeVm);
 // Add an item
   Future<bool> addFortune({required FortuneModel data}) async {
     try {
@@ -80,4 +78,4 @@ class ManageFortuneVm extends BaseModel {
 }
 
 final manageFortuenVm = ChangeNotifierProvider<ManageFortuneVm>((ref) =>
-    ManageFortuneVm(ref, locator<FortuneRepo>(), ref.watch(homeVm.notifier)));
+    ManageFortuneVm(locator<FortuneRepo>(), ref.watch(homeVm.notifier)));

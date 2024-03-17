@@ -36,10 +36,8 @@ class BaseScaffold extends StatelessWidget {
       floatingActionButtonLocation: floatingActionButtonLocation,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBody: true,
-      body: WillPopScope(
-        onWillPop: () async {
-          return willPopValue;
-        },
+      body: PopScope(
+        canPop: false,
         child: SafeArea(
             bottom: false,
             child: Padding(

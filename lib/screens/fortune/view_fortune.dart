@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fortune_gallery/_lib.dart';
 import 'package:fortune_gallery/utils/helpers/time_utils.dart';
 import 'package:get/get.dart';
