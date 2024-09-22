@@ -14,8 +14,6 @@ class AppTheme {
       primary: AppColors.primaryColor,
       primaryContainer: AppColors.primaryColor,
       secondary: AppColors.purpleColor,
-      background: AppColors.white,
-      onBackground: AppColors.white,
       onSurface: AppColors.textGrey,
       onPrimary: AppColors.white,
       surface: AppColors.white, // background color of the date picker
@@ -23,7 +21,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.backgroundColor,
     primaryColor: AppColors.primaryColor,
     scrollbarTheme: const ScrollbarThemeData().copyWith(
-      thumbColor: MaterialStateProperty.all(AppColors.primaryColor),
+      thumbColor: WidgetStateProperty.all(AppColors.primaryColor),
     ),
     highlightColor: AppColors.primaryColor,
     iconTheme: const IconThemeData(color: AppColors.black),
@@ -72,8 +70,6 @@ class AppTheme {
     colorScheme: const ColorScheme.dark().copyWith(
       primary: AppColors.white,
       secondary: AppColors.black,
-      background: AppColors.primaryColor,
-      onBackground: AppColors.primaryColor,
       surface: AppColors.primaryColor,
       onSurface: AppColors.textGrey,
     ),
@@ -81,7 +77,7 @@ class AppTheme {
     primaryColor: AppColors.white,
     highlightColor: AppColors.white,
     scrollbarTheme: const ScrollbarThemeData().copyWith(
-      thumbColor: MaterialStateProperty.all(AppColors.white),
+      thumbColor: WidgetStateProperty.all(AppColors.white),
     ),
     iconTheme: const IconThemeData(color: AppColors.white),
     fontFamily: GoogleFonts.montserratTextTheme().bodyLarge!.fontFamily,

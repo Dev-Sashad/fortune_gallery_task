@@ -43,7 +43,7 @@ class _AddFortuneScreenState extends State<AddFortuneScreen> {
                   : await ref.read(manageFortuenVm).addFortune(
                       data: FortuneModel(
                           message: _controller.text.trim(),
-                          dateCreated: DateTime.now()));
+                          dateCreated: DateTime.now().toString()));
               if (result) {
                 Navigator.pop(context);
               }

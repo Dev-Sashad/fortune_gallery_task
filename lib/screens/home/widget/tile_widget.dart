@@ -18,12 +18,13 @@ class HomeTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        slideShow(
-            widget: ViewFortuneScreen(
+        slideUpModal(
+            backgroundColor: color,
+            ViewFortuneScreen(
               data: data,
               color: color,
             ),
-            cont: context);
+            con: context);
       },
       onLongPress: onLongPress,
       child: Container(
@@ -52,7 +53,7 @@ class HomeTileWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                       color: AppColors.white.withOpacity(0.4)),
                   child: CustomText(
-                    formatMonthYear(data.dateCreated),
+                    formatMonthYear(DateTime.parse(data.dateCreated!)),
                     fontSize: 10.sp,
                     color: AppColors.white,
                     fontWeight: FontWeight.w600,
