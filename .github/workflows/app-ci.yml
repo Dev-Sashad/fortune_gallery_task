@@ -1,9 +1,9 @@
-name: Flutter CI/CD
+name: Flutter CI
 
 on:
-  push:
-    branches:
-      - development  # Change this to your main branch
+  # push:
+  #   branches:
+  #     - development  # Change this to your main branch
   pull_request:
     branches:
       - master  # Change this to your main branch
