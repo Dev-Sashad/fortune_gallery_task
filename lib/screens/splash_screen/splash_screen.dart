@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fortune_gallery/_lib.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -11,15 +12,28 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> with UIToolMixin {
   @override
   void initState() {
-    delay(2).then(
-        (value) => navigationService.navigateReplacement(const HomeSreen()));
+    // Hide system overlays for the splash screen
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+    delay(2).then((value) {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      navigationService.navigateReplacement(const HomeScreen());
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Ensure system overlays are restored when the widget is disposed
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      extendBody: true,
       body: SizedBox(
         height: screenHeight,
         width: screenWidth,
@@ -32,7 +46,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with UIToolMixin {
               textAlign: TextAlign.center,
               textType: TextType.largeText,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColor,
+              color: AppColors.white,
             )
           ],
         ),
