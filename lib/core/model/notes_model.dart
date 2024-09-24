@@ -1,7 +1,7 @@
 class FortuneModel {
   final int? id;
   final String? message;
-  final DateTime? dateCreated;
+  final String? dateCreated;
   FortuneModel({
     this.id,
     required this.message,
@@ -26,14 +26,13 @@ class FortuneModel {
   factory FortuneModel.fromJson(Map<String, Object?> json) => FortuneModel(
         id: int.parse(json[FortuneModel.idKey].toString()),
         message: json[FortuneModel.messageKey].toString(),
-        dateCreated:
-            DateTime.tryParse(json[FortuneModel.dateCreatedKey].toString()),
+        dateCreated: json[FortuneModel.dateCreatedKey].toString(),
       );
 
   FortuneModel copy({
     int? id,
     String? message,
-    DateTime? dateCreated,
+    String? dateCreated,
   }) =>
       FortuneModel(
           id: id ?? this.id,

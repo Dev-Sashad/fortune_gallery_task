@@ -1,21 +1,26 @@
 import 'package:fortune_gallery/_lib.dart';
 
-// This class represents the state of the home screen
 class HomeState {
   final LoadingState viewState;
   final LoadingState? getMoreState;
-  final List<FortuneModel>? data;
+  final List<FortuneModel> data; // Make data non-nullable
   final bool? noMoreData;
-  int get nextPageRange => data!.length;
 
-  const HomeState._(
-      {required this.viewState, this.data, this.getMoreState, this.noMoreData});
+  int get nextPageRange => data.length; // Safe to use length now
 
-  factory HomeState.initial() => const HomeState._(
-      viewState: LoadingState.idle,
-      getMoreState: LoadingState.idle,
-      data: [],
-      noMoreData: false);
+  HomeState._({
+    required this.viewState,
+    this.getMoreState,
+    List<FortuneModel>? data,
+    this.noMoreData,
+  }) : data = data ?? []; // Initialize to an empty list if null
+
+  factory HomeState.initial() => HomeState._(
+        viewState: LoadingState.idle,
+        getMoreState: LoadingState.idle,
+        data: [], // Initializing with an empty list
+        noMoreData: false,
+      );
 
   HomeState copyWith({
     List<FortuneModel>? data,
@@ -24,9 +29,10 @@ class HomeState {
     bool? noMoreData,
   }) {
     return HomeState._(
-        data: data ?? this.data,
-        viewState: viewState ?? this.viewState,
-        getMoreState: getMoreState ?? this.getMoreState,
-        noMoreData: noMoreData ?? this.noMoreData);
+      data: data ?? this.data,
+      viewState: viewState ?? this.viewState,
+      getMoreState: getMoreState ?? this.getMoreState,
+      noMoreData: noMoreData ?? this.noMoreData,
+    );
   }
 }

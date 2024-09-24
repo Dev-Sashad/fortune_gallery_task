@@ -7,12 +7,11 @@ class OkDialog extends StatelessWidget {
   final String? buttonMsg;
   final void Function()? onpressed;
   const OkDialog(
-      {Key? key,
+      {super.key,
       this.message,
       this.onpressed,
       this.buttonMsg = "Okay",
-      this.title})
-      : super(key: key);
+      this.title});
 
   @override
   Widget build(BuildContext context) {

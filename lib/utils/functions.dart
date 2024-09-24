@@ -1,9 +1,8 @@
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:fortune_gallery/_lib.dart';
+import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
@@ -60,18 +59,20 @@ Future<void> showOkayDialog(
     String message = "",
     VoidCallback? onPressed,
     BuildContext? cont}) {
-  return showAnimatedDialog(
+  return showDialog(
       barrierDismissible: true,
       context: cont ?? context,
-      animationType: DialogTransitionType.fadeScale,
-      curve: Curves.fastOutSlowIn,
-      duration: const Duration(milliseconds: 500),
       builder: (context) {
-        return OkDialog(
-          message: message,
-          title: title,
-          onpressed: onPressed,
-          buttonMsg: buttonMsg,
+        return AnimatedOpacity(
+          opacity: 1.0,
+          curve: Curves.fastOutSlowIn,
+          duration: const Duration(milliseconds: 500),
+          child: OkDialog(
+            message: message,
+            title: title,
+            onpressed: onPressed,
+            buttonMsg: buttonMsg,
+          ),
         );
       });
 }
@@ -85,33 +86,48 @@ Future<void> showCallToActionDialog(
     VoidCallback? declineCallback,
     VoidCallback? callback,
     BuildContext? cont}) {
-  return showAnimatedDialog(
+  return showDialog(
       barrierDismissible: true,
       context: cont ?? context,
-      animationType: DialogTransitionType.fadeScale,
-      curve: Curves.fastOutSlowIn,
-      duration: const Duration(milliseconds: 500),
       builder: (context) {
-        return CallToActionDialog(
-          acceptText: acceptText,
-          declineText: declineText,
-          declineroute: declineCallback,
-          message: message,
-          title: title,
-          route: callback,
-          acceptColor: acceptColor,
+        return AnimatedOpacity(
+          opacity: 1.0,
+          curve: Curves.fastOutSlowIn,
+          duration: const Duration(milliseconds: 500),
+          child: CallToActionDialog(
+            acceptText: acceptText,
+            declineText: declineText,
+            declineroute: declineCallback,
+            message: message,
+            title: title,
+            route: callback,
+            acceptColor: acceptColor,
+          ),
         );
       });
 }
 
-Future<void> slideShow({required Widget widget, BuildContext? cont}) {
-  return showAnimatedDialog(
-      barrierDismissible: true,
-      context: cont ?? context,
-      animationType: DialogTransitionType.slideFromTopFade,
-      curve: Curves.fastOutSlowIn,
-      duration: const Duration(milliseconds: 500),
-      builder: (context) {
-        return widget;
-      });
+slideUpModal(Widget widget,
+    {BuildContext? con,
+    bool isScrollControlled = true,
+    bool showDragHandle = true,
+    Color? backgroundColor}) {
+  return showModalBottomSheet(
+      enableDrag: true,
+      context: con ?? Get.context!,
+      isScrollControlled: isScrollControlled,
+      backgroundColor: backgroundColor,
+      constraints: BoxConstraints(
+        maxHeight: screenHeight * 0.85,
+      ),
+      sheetAnimationStyle: AnimationStyle(
+          curve: Curves.easeIn,
+          duration: const Duration(milliseconds: 400),
+          reverseDuration: const Duration(milliseconds: 200),
+          reverseCurve: Curves.easeOut),
+      showDragHandle: showDragHandle,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r))),
+      builder: (context) => widget);
 }

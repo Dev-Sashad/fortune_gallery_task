@@ -4,14 +4,14 @@ import 'package:fortune_gallery/_lib.dart';
 import 'package:fortune_gallery/utils/extension.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class HomeSreen extends ConsumerStatefulWidget {
-  const HomeSreen({super.key});
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  ConsumerState<HomeSreen> createState() => _HomeSreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeSreenState extends ConsumerState<HomeSreen> with UIToolMixin {
+class _HomeScreenState extends ConsumerState<HomeScreen> with UIToolMixin {
   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
@@ -133,11 +133,20 @@ class _HomeSreenState extends ConsumerState<HomeSreen> with UIToolMixin {
                                       title: "Hey!",
                                       message: "Would you like to delete this?",
                                       callback: () async {
-                                        final v = await ref
-                                            .read(manageFortuenVm)
-                                            .deleteFortune(id: vm.data![i].id!);
-                                        if (v) {
+                                        final mfvm = ref.watch(manageFortuenVm);
+                                        mfvm.setBusy(true);
+                                        final v = await mfvm.deleteFortune(
+                                            id: vm.data![i].id!);
+                                        if (v.status) {
+                                          mfvm.setBusy(false);
+                                          ref
+                                              .read(homeVm.notifier)
+                                              .refreshFortune();
                                           showToast("deleted");
+                                        } else {
+                                          mfvm.setBusy(false);
+                                          showOkayDialog(
+                                              message: v.message ?? "");
                                         }
                                       },
                                     ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fortune_gallery/_lib.dart';
 import 'package:fortune_gallery/utils/helpers/time_utils.dart';
 import 'package:get/get.dart';
@@ -18,18 +17,18 @@ class ViewFortuneScreen extends StatelessWidget with UIToolMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: color,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: color,
+      // ),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(top: 20.sp),
         child: FloatingActionButton(
           onPressed: () {
+            Navigator.pop(context);
             navigationService.pushScreen(AddFortuneScreen(
               data: data,
             ));
-            Navigator.pop(context);
           },
           shape: const CircleBorder(),
           backgroundColor: AppColors.black,
@@ -58,18 +57,15 @@ class ViewFortuneScreen extends StatelessWidget with UIToolMixin {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                height: screenHeight * 0.55,
-                child: SafeArea(
-                  bottom: false,
-                  child: Center(
-                    child: CustomScrollWidget(
-                      child: CustomText(
-                        (data.message ?? "").capitalizeFirst ?? "",
-                        textType: TextType.mediumText,
-                        textAlign: TextAlign.center,
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
+                height: screenHeight * 0.4,
+                child: Center(
+                  child: CustomScrollWidget(
+                    child: CustomText(
+                      (data.message ?? "").capitalizeFirst ?? "",
+                      textType: TextType.mediumText,
+                      textAlign: TextAlign.center,
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
@@ -85,7 +81,7 @@ class ViewFortuneScreen extends StatelessWidget with UIToolMixin {
                         borderRadius: BorderRadius.circular(8.r),
                         color: AppColors.white.withOpacity(0.4)),
                     child: CustomText(
-                      formatMonthYear(data.dateCreated),
+                      formatMonthYear(DateTime.parse(data.dateCreated!)),
                       fontSize: 12.sp,
                       color: AppColors.white,
                       fontWeight: FontWeight.w600,

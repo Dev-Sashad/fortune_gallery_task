@@ -17,14 +17,14 @@ class HomeVm extends StateNotifier<HomeState> {
       List<FortuneModel> data = [];
       if (result.data!.isNotEmpty) {
         for (FortuneModel val in result.data!) {
-          if (!data.contains(val) && !state.data!.contains(val)) {
+          if (!data.contains(val) && !state.data.contains(val)) {
             data.add(val);
           }
         }
       }
       state = state.copyWith(
           viewState: LoadingState.idle,
-          data: data,
+          data: data.isNotEmpty ? data : state.data,
           noMoreData: result.data!.isEmpty);
       appPrint(state.viewState.name);
     } else {
@@ -40,7 +40,7 @@ class HomeVm extends StateNotifier<HomeState> {
       List<FortuneModel> data = [];
       if (result.data!.isNotEmpty) {
         for (FortuneModel val in result.data!) {
-          if (!data.contains(val) && !state.data!.contains(val)) {
+          if (!data.contains(val) && !state.data.contains(val)) {
             data.add(val);
           }
         }
@@ -66,14 +66,14 @@ class HomeVm extends StateNotifier<HomeState> {
         List<FortuneModel> data = [];
         if (result.data!.isNotEmpty) {
           for (FortuneModel val in result.data!) {
-            if (!data.contains(val) && !state.data!.contains(val)) {
+            if (!data.contains(val) && !state.data.contains(val)) {
               data.add(val);
             }
           }
         }
         state = state.copyWith(
             getMoreState: LoadingState.idle,
-            data: [...state.data!, ...data],
+            data: [...state.data, ...data],
             noMoreData: result.data!.isEmpty);
       } else {
         state = state.copyWith(

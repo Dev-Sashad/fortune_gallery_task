@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class DismissableKeyboardFeature extends StatefulWidget {
   final Widget? child;
-  const DismissableKeyboardFeature({Key? key, @required this.child})
-      : super(key: key);
+  const DismissableKeyboardFeature({super.key, @required this.child});
 
   @override
   State<DismissableKeyboardFeature> createState() =>

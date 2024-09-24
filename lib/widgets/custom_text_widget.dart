@@ -3,7 +3,7 @@ import 'package:fortune_gallery/_lib.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText(this.text,
-      {Key? key,
+      {super.key,
       this.color,
       this.textAlign,
       this.textStyle,
@@ -13,8 +13,7 @@ class CustomText extends StatelessWidget {
       this.fontWeight,
       this.fontSize,
       this.fontStyle,
-      this.textDecoration})
-      : super(key: key);
+      this.textDecoration});
 
   final TextStyle? textStyle;
   final String text;

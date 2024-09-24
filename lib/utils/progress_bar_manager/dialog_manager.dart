@@ -3,7 +3,7 @@ import 'package:fortune_gallery/_lib.dart';
 
 class ProgressManager extends StatefulWidget {
   final Widget? child;
-  const ProgressManager({Key? key, this.child}) : super(key: key);
+  const ProgressManager({super.key, this.child});
 
   @override
   State<ProgressManager> createState() => _ProgressManagerState();

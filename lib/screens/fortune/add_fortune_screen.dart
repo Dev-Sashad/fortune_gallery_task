@@ -30,22 +30,29 @@ class _AddFortuneScreenState extends State<AddFortuneScreen> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       floatingActionButton: Consumer(builder: (context, ref, _) {
+        final vm = ref.watch(manageFortuenVm);
         return GestureDetector(
           onTap: () async {
             hideKeyboard(context);
             if (_controller.text.trim().isNotEmpty) {
+              vm.setBusy(true);
               final result = widget.data != null
-                  ? await ref.read(manageFortuenVm).updateFortune(
+                  ? await vm.updateFortune(
                       data: FortuneModel(
                           id: widget.data!.id,
                           message: _controller.text.trim(),
                           dateCreated: widget.data!.dateCreated))
-                  : await ref.read(manageFortuenVm).addFortune(
+                  : await vm.addFortune(
                       data: FortuneModel(
                           message: _controller.text.trim(),
-                          dateCreated: DateTime.now()));
-              if (result) {
+                          dateCreated: DateTime.now().toString()));
+              if (result.status) {
+                ref.read(homeVm.notifier).refreshFortune();
+                vm.setBusy(false);
                 Navigator.pop(context);
+              } else {
+                vm.setBusy(false);
+                showOkayDialog(message: result.message ?? "");
               }
             } else {
               showToast("Start typing...");

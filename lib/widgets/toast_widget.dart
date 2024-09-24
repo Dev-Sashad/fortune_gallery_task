@@ -4,9 +4,9 @@ import 'package:fortune_gallery/_lib.dart';
 class ToastText extends StatelessWidget {
   final String? text;
   const ToastText({
-    Key? key,
+    super.key,
     this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

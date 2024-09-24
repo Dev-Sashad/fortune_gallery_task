@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fortune_gallery/_lib.dart';
-import 'package:fortune_gallery/utils/router/navigation_route_names.dart';
 
 Route<dynamic> generateRoute(RouteSettings? settings) {
   switch (settings!.name) {
